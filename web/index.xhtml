@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pizza Time!</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns = "2">
+
+                <h:outputLabel value ="Pizza name "/>
+                <h:inputText value ="#{PizzaController.name}" label="Name"/>
+
+                <h:outputLabel value ="Pizza description"/>
+                <h:inputText value ="#{PizzaController.description}" label="Description"/>
+
+                <h:outputLabel value ="Pizza price"/>
+                <h:inputText value ="#{PizzaController.price}" label="Price"/>
+
+                <h:message for="number" style="color:blue"/>
+                <h:commandButton value="Submit" action="#{PizzaController.submit}"/>
+
+            </h:panelGrid>
+
+            <p:dataTable value="#{PizzaController.allPizzas}" var="p">
+                <p:column headerText="ID"> #{p.id}</p:column>
+                <p:column headerText="NAME"> #{p.name}</p:column>
+                <p:column headerText="PRICE"> #{p.price}</p:column>
+                <p:column headerText="DESCRIPTION"> #{p.description}</p:column>
+                <p:column headerText="DELETE"><h:commandButton value="Delete" action="#{PizzaController.delete(p.id)}"/></p:column>
+                <p:column headerText="EDIT"><h:commandButton value="Edit" action="#{PizzaController.update(p.id)}"/></p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
